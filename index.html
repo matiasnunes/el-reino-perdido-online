@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>El Reino Perdido</title>
+  <meta name="description" content="Una recuperación teológica. Lo que los profetas prometieron, los apóstoles esperaron, y dieciséis siglos de teología cristiana perdieron." />
+  <link rel="icon" type="image/png" href="1000-favicon.png" />
+  <link rel="apple-touch-icon" href="1000-favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cormorant+SC:wght@300;400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="bg-layer"></div>
+
+  <!-- Floating particles -->
+  <div class="particles" id="particles"></div>
+
+  <main class="wrapper">
+
+    <!-- Top ornament -->
+    <div class="top-ornament">
+      <div class="ornament-line">
+        <div class="ornament-diamond"></div>
+      </div>
+      <p class="label-coming">Próximamente</p>
+    </div>
+
+    <!-- Logo -->
+    <div class="logo-container">
+      <img src="1000-logo.png" alt="Logo" />
+    </div>
+
+    <!-- Title -->
+    <header class="site-title">
+      <h1>El <em>Reino</em> Perdido</h1>
+      <div class="title-rule"></div>
+    </header>
+
+    <!-- Central question -->
+    <section class="central-question">
+      <p class="question-eyebrow">Una pregunta que creés<br> poder responder</p>
+      <p class="question-text">
+        <strong>¿Qué le prometió Dios a Abraham?</strong>
+      </p>
+    </section>
+
+    <!-- Scripture -->
+    <blockquote class="scripture-block">
+      <p class="scripture-text">
+        "Todos estos murieron sin haber recibido las promesas&#8230;"
+      </p>
+      <cite class="scripture-ref">Hebreos 11:13</cite>
+    </blockquote>
+
+    <!-- Tarjeta de artículo -->
+    <a class="article-card" href="articulos/que-le-prometio-dios-a-abraham.html">
+      <span class="article-card__eyebrow">Parte 1</span>
+      <h2 class="article-card__title">¿Qué le prometió Dios a Abraham?</h2>
+      <p class="article-card__excerpt">Si sos cristiano y tenés un nivel básico de conocimiento bíblico, la pregunta debería ser fácil de responder. Todos conocemos la historia. Pero hay algo que no cierra.</p>
+      <span class="article-card__cta">
+        Leer
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </span>
+    </a>
+
+    <!-- Tagline -->
+    <div class="tagline">
+      <p>
+        Lo que los profetas prometieron, los apóstoles esperaron y<br><strong>dieciséis siglos de teología cristiana perdieron.</strong>
+      </p>
+    </div>
+
+    <!-- Email capture -->
+    <div class="email-section">
+      <p class="en-construccion">SITIO EN CONSTRUCCIÓN</p>
+      <label class="form-label" for="email-input">Avisame cuando esté listo!</label>
+
+      <form name="waitlist" method="POST" data-netlify="true" id="form-container">
+
+        <!-- necesario para Netlify -->
+        <input type="hidden" name="form-name" value="waitlist" />
+
+        <div class="form-row">
+          <input
+            type="email"
+            name="email"
+            id="email-input"
+            class="email-input"
+            placeholder="tu@correo.com"
+            autocomplete="email"
+            required
+          />
+          <button class="submit-btn" type="submit">
+            Notificarme
+          </button>
+        </div>
+
+        <p class="form-error" id="form-error">
+          Por favor ingresá un correo válido.
+        </p>
+
+      </form>
+
+      <div class="success-message" id="success-message">
+        <p>Quedó registrado.</p>
+        <span>Te escribimos cuando el sitio esté listo</span>
+      </div>
+    </div>
+
+    <!-- Share -->
+    <div class="share-section">
+      <span class="share-label">Compartir</span>
+      <div class="share-buttons">
+
+        <!-- WhatsApp -->
+        <a
+          class="share-btn"
+          id="wa-btn"
+          href="#"
+          target="_blank"
+          rel="noopener"
+          aria-label="Compartir por WhatsApp"
+        >
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          WhatsApp
+        </a>
+
+        <!-- Twitter / X -->
+        <a
+          class="share-btn"
+          id="tw-btn"
+          href="#"
+          target="_blank"
+          rel="noopener"
+          aria-label="Compartir en Twitter"
+        >
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+          Twitter
+        </a>
+
+        <!-- Copy link -->
+        <div class="tooltip-container">
+          <button
+            class="share-btn copy-btn"
+            id="copy-btn"
+            onclick="copyLink()"
+            aria-label="Copiar enlace"
+          >
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Copiar enlace
+          </button>
+          <div class="tooltip" id="copy-tooltip">¡Copiado!</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Bottom ornament -->
+    <div class="bottom-ornament">
+      <div class="ornament-line">
+        <div class="ornament-diamond"></div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    // ── Particles ──────────────────────────────────────────
+    (function createParticles() {
+      const container = document.getElementById('particles');
+      const count = 18;
+      for (let i = 0; i < count; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const left = Math.random() * 100;
+        const delay = Math.random() * 20;
+        const duration = 15 + Math.random() * 25;
+        const size = Math.random() > 0.7 ? 2 : 1;
+        p.style.cssText = `
+          left: ${left}%;
+          width: ${size}px;
+          height: ${size}px;
+          animation-delay: ${delay}s;
+          animation-duration: ${duration}s;
+        `;
+        container.appendChild(p);
+      }
+    })();
+
+    // ── Share URLs ─────────────────────────────────────────
+    (function initShare() {
+      const url = encodeURIComponent(window.location.href);
+      const text = encodeURIComponent('¿Qué le prometió Dios a Abraham? Una pregunta que cualquier creyente cree poder responder — y que lo cambia todo cuando la respondés honestamente.');
+
+      document.getElementById('wa-btn').href =
+        `https://wa.me/?text=${text}%20${url}`;
+
+      document.getElementById('tw-btn').href =
+        `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+    })();
+
+    // ── Copy link ──────────────────────────────────────────
+    function copyLink() {
+      const btn = document.getElementById('copy-btn');
+      const tooltip = document.getElementById('copy-tooltip');
+
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        btn.classList.add('copied');
+        tooltip.classList.add('show');
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          tooltip.classList.remove('show');
+        }, 2000);
+      }).catch(() => {
+        const ta = document.createElement('textarea');
+        ta.value = window.location.href;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        btn.classList.add('copied');
+        tooltip.classList.add('show');
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          tooltip.classList.remove('show');
+        }, 2000);
+      });
+    }
+
+    // ── Clear error on typing ──────────────────────────────
+    document.getElementById('email-input').addEventListener('input', function() {
+      const error = document.getElementById('form-error');
+      error.classList.remove('visible');
+      this.style.borderColor = '';
+    });
+  </script>
+</body>
+</html>

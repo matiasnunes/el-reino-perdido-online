@@ -1,0 +1,677 @@
+/* ============================================================
+   El Reino Perdido — estilos
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --stone-darkest: #0e0d0b;
+  --stone-dark: #1a1814;
+  --stone-mid: #2c2820;
+  --stone-light: #4a4238;
+  --parchment-deep: #c9b48a;
+  --parchment-mid: #d9c9a3;
+  --parchment-light: #ede0c4;
+  --parchment-pale: #f5edd8;
+  --gold: #c8a84b;
+  --gold-bright: #e2c06a;
+  --gold-dim: #8a6f30;
+  --text-body: #d4c4a0;
+  --text-muted: #7a6e5a;
+  --text-accent: #e8d5a8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--stone-darkest);
+  color: var(--text-body);
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 18px;
+  line-height: 1.7;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Grain overlay ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* ── Radial vignette ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 80% at 50% 50%, transparent 40%, rgba(0,0,0,0.6) 100%);
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* ── Background texture ── */
+.bg-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 120% 60% at 50% 0%, rgba(200,168,75,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 20% 80%, rgba(42,34,22,0.8) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(42,34,22,0.8) 0%, transparent 70%),
+    linear-gradient(180deg, #0e0d0b 0%, #141210 40%, #1a1814 70%, #0e0d0b 100%);
+}
+
+/* ── Main wrapper ── */
+.wrapper {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1.5rem;
+}
+
+/* ── Top ornament ── */
+.top-ornament {
+  text-align: center;
+  margin-bottom: 0.9rem;
+  opacity: 0;
+  animation: fadeUp 1.2s ease forwards 0.2s;
+}
+
+.ornament-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.ornament-line::before,
+.ornament-line::after {
+  content: '';
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--parchment-mid), transparent);
+}
+
+.ornament-diamond {
+  width: 6px;
+  height: 6px;
+  background: var(--parchment-mid);
+  transform: rotate(45deg);
+}
+
+.label-coming {
+  font-family: 'Cormorant SC', serif;
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  color: var(--parchment-mid);
+  text-transform: uppercase;
+}
+
+/* ── Logo ── */
+.logo-container {
+  margin-bottom: 1.8rem;
+  text-align: center;
+}
+
+.logo-container img {
+  width: 3cm;
+  height: auto;
+  opacity: 0.9;
+}
+
+/* ── Site title ── */
+.site-title {
+  text-align: center;
+  margin-bottom: 3rem;
+  opacity: 0;
+  animation: fadeUp 1.4s ease forwards 0.5s;
+}
+
+.site-title h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  color: var(--parchment-light);
+  margin-bottom: 0.3em;
+}
+
+.site-title h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.title-rule {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 1.2rem auto 0;
+}
+
+/* ── Central question ── */
+.central-question {
+  max-width: 680px;
+  text-align: center;
+  margin-bottom: 3rem;
+  opacity: 0;
+  animation: fadeUp 1.4s ease forwards 0.8s;
+}
+
+.question-eyebrow {
+  font-family: 'Cormorant SC', serif;
+  font-size: clamp(0.75rem, 1.4vw, 1.2rem);
+  letter-spacing: 0.8em;
+  color: var(--parchment-deep);
+  text-transform: uppercase;
+  margin-bottom: 1.8rem;
+}
+
+.question-text {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+  font-weight: 500;
+  font-style: normal;
+  line-height: 1.2;
+  color: var(--parchment-light);
+  margin-bottom: 1rem;
+  letter-spacing: 0.01em;
+  text-align: center;
+}
+
+.question-text strong {
+  font-style: normal;
+  font-weight: 500;
+  color: var(--parchment-light);
+}
+
+/* ── Scripture block ── */
+.scripture-block {
+  max-width: 560px;
+  text-align: center;
+  margin-bottom: 4rem;
+  padding: 2.5rem 2rem;
+  border: 1px solid rgba(200,168,75,0.15);
+  background: rgba(200,168,75,0.02);
+  position: relative;
+  opacity: 0;
+  animation: fadeUp 1.4s ease forwards 1.1s;
+}
+
+.scripture-block::before,
+.scripture-block::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: var(--parchment-mid);
+  border-style: solid;
+}
+
+.scripture-block::before {
+  top: -1px;
+  left: -1px;
+  border-width: 1px 0 0 1px;
+}
+
+.scripture-block::after {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 1px 1px 0;
+}
+
+.scripture-text {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.3rem, 2.2vw, 1.55rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--parchment-mid);
+  margin-bottom: 1rem;
+}
+
+.scripture-ref {
+  font-family: 'Cormorant SC', serif;
+  font-size: 0.88rem;
+  letter-spacing: 0.2em;
+  color: var(--parchment-deep);
+}
+
+/* ── Article card ── */
+.article-card {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  margin-bottom: 4rem;
+  padding: 2rem 2.2rem 1.8rem;
+  border: 1px solid rgba(200,168,75,0.18);
+  background: rgba(200,168,75,0.025);
+  text-decoration: none;
+  position: relative;
+  opacity: 0;
+  animation: fadeUp 1.4s ease forwards 1.25s;
+  transition: border-color 0.4s ease, background 0.4s ease;
+}
+
+.article-card::before,
+.article-card::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--gold-dim);
+  border-style: solid;
+  transition: border-color 0.4s ease;
+}
+
+.article-card::before {
+  top: -1px;
+  left: -1px;
+  border-width: 1px 0 0 1px;
+}
+
+.article-card::after {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 1px 1px 0;
+}
+
+.article-card:hover {
+  border-color: rgba(200,168,75,0.4);
+  background: rgba(200,168,75,0.05);
+}
+
+.article-card:hover::before,
+.article-card:hover::after {
+  border-color: var(--gold);
+}
+
+.article-card__eyebrow {
+  display: block;
+  font-family: 'Cormorant SC', serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.3em;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+  transition: color 0.3s ease;
+}
+
+.article-card:hover .article-card__eyebrow {
+  color: var(--gold);
+}
+
+.article-card__title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.3rem, 2.8vw, 1.75rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.25;
+  color: var(--parchment-light);
+  margin-bottom: 1rem;
+}
+
+.article-card__excerpt {
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+  line-height: 1.75;
+  color: var(--text-muted);
+  margin-bottom: 1.4rem;
+}
+
+.article-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Cormorant SC', serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.25em;
+  color: var(--gold-dim);
+  transition: color 0.3s ease, gap 0.3s ease;
+}
+
+.article-card:hover .article-card__cta {
+  color: var(--gold);
+  gap: 0.8rem;
+}
+
+.article-card__cta svg {
+  width: 13px;
+  height: 13px;
+  transition: transform 0.3s ease;
+}
+
+.article-card:hover .article-card__cta svg {
+  transform: translateX(3px);
+}
+
+/* ── Tagline ── */
+.tagline {
+  max-width: 540px;
+  text-align: center;
+  margin-bottom: 4rem;
+  opacity: 0;
+  animation: fadeUp 1.4s ease forwards 1.4s;
+}
+
+.tagline p {
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+  font-style: italic;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
+.tagline p strong {
+  font-style: normal;
+  color: var(--text-body);
+}
+
+/* ── En construcción ── */
+.en-construccion {
+  max-width: 980px;
+  text-align: center;
+  margin-bottom: 1rem;
+  opacity: 0;
+  animation: fadeUp 1.4s ease forwards 0.8s;
+}
+
+/* ── Email form ── */
+.email-section {
+  width: 100%;
+  max-width: 440px;
+  margin-bottom: 3rem;
+  opacity: 0;
+  animation: fadeUp 1.4s ease forwards 1.5s;
+}
+
+.form-label {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-style: italic;
+  letter-spacing: 0.04em;
+  color: var(--parchment-light);
+  display: block;
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 0;
+}
+
+.email-input {
+  flex: 1;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(200,168,75,0.2);
+  border-right: none;
+  color: var(--parchment-light);
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 1rem;
+  padding: 0.85rem 1.2rem;
+  outline: none;
+  transition: border-color 0.3s ease, background 0.3s ease;
+  min-width: 0;
+}
+
+.email-input::placeholder {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.email-input:focus {
+  border-color: rgba(200,168,75,0.5);
+  background: rgba(200,168,75,0.04);
+}
+
+.submit-btn {
+  background: transparent;
+  border: 1px solid rgba(200,168,75,0.4);
+  color: var(--gold);
+  font-family: 'Cormorant SC', serif;
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  padding: 0.85rem 1.4rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.submit-btn:hover {
+  background: rgba(200,168,75,0.08);
+  border-color: var(--gold);
+  color: var(--gold-bright);
+}
+
+/* ── Success state ── */
+.success-message {
+  display: none;
+  text-align: center;
+  padding: 1.2rem 1.5rem;
+  border: 1px solid rgba(200,168,75,0.2);
+  background: rgba(200,168,75,0.03);
+}
+
+.success-message.visible {
+  display: block;
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.success-message p {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  color: var(--parchment-mid);
+  font-size: 1.05rem;
+}
+
+.success-message span {
+  display: block;
+  font-family: 'Cormorant SC', serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.25em;
+  color: var(--gold-dim);
+  margin-top: 0.5rem;
+}
+
+/* ── Share buttons ── */
+.share-section {
+  opacity: 0;
+  animation: fadeUp 1.4s ease forwards 1.7s;
+  text-align: center;
+}
+
+.share-label {
+  font-family: 'Cormorant SC', serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.3em;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.share-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: transparent;
+  color: var(--text-muted);
+  font-family: 'Cormorant SC', serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  padding: 0.6rem 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.share-btn:hover {
+  border-color: rgba(200,168,75,0.3);
+  color: var(--parchment-mid);
+}
+
+.share-btn svg {
+  width: 13px;
+  height: 13px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.copy-btn.copied {
+  border-color: rgba(200,168,75,0.4);
+  color: var(--gold);
+}
+
+/* ── Bottom ornament ── */
+.bottom-ornament {
+  margin-top: 4rem;
+  text-align: center;
+  opacity: 0;
+  animation: fadeUp 1.4s ease forwards 1.9s;
+}
+
+.bottom-ornament .ornament-line::before,
+.bottom-ornament .ornament-line::after {
+  width: 40px;
+}
+
+/* ── Floating particles ── */
+.particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background: var(--gold-dim);
+  border-radius: 50%;
+  opacity: 0;
+  animation: float linear infinite;
+}
+
+/* ── Animations ── */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0% {
+    opacity: 0;
+    transform: translateY(100vh) scale(0);
+  }
+  10% { opacity: 0.4; }
+  90% { opacity: 0.1; }
+  100% {
+    opacity: 0;
+    transform: translateY(-10vh) scale(1);
+  }
+}
+
+/* ── Tooltip for copy ── */
+.tooltip-container {
+  position: relative;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--stone-mid);
+  border: 1px solid rgba(200,168,75,0.2);
+  color: var(--parchment-mid);
+  font-family: 'Cormorant SC', serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  padding: 0.35rem 0.7rem;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.tooltip.show {
+  opacity: 1;
+}
+
+/* ── Error state ── */
+.form-error {
+  display: none;
+  font-family: 'EB Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #c4926a;
+  text-align: center;
+  margin-top: 0.6rem;
+}
+
+.form-error.visible {
+  display: block;
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .form-row {
+    flex-direction: column;
+  }
+
+  .email-input {
+    border-right: 1px solid rgba(200,168,75,0.2);
+    border-bottom: none;
+  }
+
+  .submit-btn {
+    border-top: none;
+  }
+
+  .share-buttons {
+    gap: 0.5rem;
+  }
+
+  .scripture-block {
+    padding: 2rem 1.5rem;
+  }
+
+  .article-card {
+    padding: 1.6rem 1.4rem;
+  }
+}
