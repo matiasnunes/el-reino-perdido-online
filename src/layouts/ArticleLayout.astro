@@ -1,0 +1,66 @@
+---
+const {
+  title,
+  description = '',
+  publishedAt = '',
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | El Reino Perdido</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/png" href="/1000-favicon.png" />
+    <link rel="apple-touch-icon" href="/1000-favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cormorant+SC:wght@300;400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="bg-layer"></div>
+
+    <!-- Header minimal del artículo -->
+    <header class="art-header">
+      <div class="art-header__ornament">
+        <div class="ornament-line"><div class="ornament-diamond"></div></div>
+      </div>
+      <a href="/" class="art-header__identity">
+        <img src="/1000-logo.png" alt="El Reino Perdido" class="art-header__logo" />
+        <span class="art-header__site-name">El Reino Perdido</span>
+      </a>
+    </header>
+
+    <!-- Contenido -->
+    <main class="article-page">
+
+      <header class="article-header">
+        {publishedAt && <p class="article-meta">{publishedAt}</p>}
+        <h1 class="article-title">{title}</h1>
+        <div class="article-header__rule"></div>
+      </header>
+
+      <article class="article-content">
+        <slot />
+      </article>
+
+      <!-- Footer editorial -->
+      <footer class="art-footer">
+        <div class="art-footer__ornament">
+          <div class="ornament-line"><div class="ornament-diamond"></div></div>
+        </div>
+        <nav class="art-footer__nav">
+          <a href="/" class="art-footer__link">← Inicio</a>
+          <a href="/#articulos" class="art-footer__link">Ver artículos</a>
+        </nav>
+      </footer>
+
+    </main>
+  </body>
+</html>

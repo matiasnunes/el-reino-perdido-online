@@ -72,7 +72,7 @@ body::after {
     linear-gradient(180deg, #0e0d0b 0%, #141210 40%, #1a1814 70%, #0e0d0b 100%);
 }
 
-/* ── Main wrapper ── */
+/* ── Main wrapper (landing) ── */
 .wrapper {
   position: relative;
   z-index: 2;
@@ -84,14 +84,7 @@ body::after {
   padding: 4rem 1.5rem;
 }
 
-/* ── Top ornament ── */
-.top-ornament {
-  text-align: center;
-  margin-bottom: 0.9rem;
-  opacity: 0;
-  animation: fadeUp 1.2s ease forwards 0.2s;
-}
-
+/* ── Ornamentos compartidos ── */
 .ornament-line {
   display: flex;
   align-items: center;
@@ -115,6 +108,14 @@ body::after {
   transform: rotate(45deg);
 }
 
+/* ── Top ornament (landing) ── */
+.top-ornament {
+  text-align: center;
+  margin-bottom: 0.9rem;
+  opacity: 0;
+  animation: fadeUp 1.2s ease forwards 0.2s;
+}
+
 .label-coming {
   font-family: 'Cormorant SC', serif;
   font-size: 0.82rem;
@@ -124,7 +125,7 @@ body::after {
   text-transform: uppercase;
 }
 
-/* ── Logo ── */
+/* ── Logo (landing) ── */
 .logo-container {
   margin-bottom: 1.8rem;
   text-align: center;
@@ -136,7 +137,7 @@ body::after {
   opacity: 0.9;
 }
 
-/* ── Site title ── */
+/* ── Site title (landing) ── */
 .site-title {
   text-align: center;
   margin-bottom: 3rem;
@@ -179,7 +180,7 @@ body::after {
   margin: 1.2rem auto 0;
 }
 
-/* ── Central question ── */
+/* ── Central question (landing) ── */
 .central-question {
   max-width: 680px;
   text-align: center;
@@ -215,7 +216,7 @@ body::after {
   color: var(--parchment-light);
 }
 
-/* ── Scripture block — subtítulo sin caja ── */
+/* ── Scripture block (landing) ── */
 .scripture-block {
   max-width: 600px;
   text-align: center;
@@ -260,7 +261,7 @@ body::after {
   color: var(--parchment-mid);
 }
 
-/* ── Article card ── */
+/* ── Article card (landing) ── */
 .article-card {
   display: block;
   width: 100%;
@@ -368,7 +369,7 @@ body::after {
   transform: translateX(3px);
 }
 
-/* ── Tagline ── */
+/* ── Tagline (landing) ── */
 .tagline {
   max-width: 540px;
   text-align: center;
@@ -399,7 +400,7 @@ body::after {
   animation: fadeUp 1.4s ease forwards 0.8s;
 }
 
-/* ── Email form ── */
+/* ── Email form (landing) ── */
 .email-section {
   width: 100%;
   max-width: 440px;
@@ -499,7 +500,7 @@ body::after {
   margin-top: 0.5rem;
 }
 
-/* ── Share buttons ── */
+/* ── Share buttons (landing) ── */
 .share-section {
   opacity: 0;
   animation: fadeUp 1.4s ease forwards 1.7s;
@@ -555,7 +556,7 @@ body::after {
   color: var(--gold);
 }
 
-/* ── Bottom ornament ── */
+/* ── Bottom ornament (landing) ── */
 .bottom-ornament {
   margin-top: 4rem;
   text-align: center;
@@ -589,33 +590,19 @@ body::after {
 
 /* ── Animations ── */
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(22px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes float {
-  0% {
-    opacity: 0;
-    transform: translateY(100vh) scale(0);
-  }
-  10% { opacity: 0.4; }
-  90% { opacity: 0.1; }
-  100% {
-    opacity: 0;
-    transform: translateY(-10vh) scale(1);
-  }
+  0%   { opacity: 0; transform: translateY(100vh) scale(0); }
+  10%  { opacity: 0.4; }
+  90%  { opacity: 0.1; }
+  100% { opacity: 0; transform: translateY(-10vh) scale(1); }
 }
 
-/* ── Tooltip for copy ── */
-.tooltip-container {
-  position: relative;
-}
+/* ── Tooltip ── */
+.tooltip-container { position: relative; }
 
 .tooltip {
   position: absolute;
@@ -635,9 +622,7 @@ body::after {
   transition: opacity 0.2s;
 }
 
-.tooltip.show {
-  opacity: 1;
-}
+.tooltip.show { opacity: 1; }
 
 /* ── Error state ── */
 .form-error {
@@ -650,30 +635,279 @@ body::after {
   margin-top: 0.6rem;
 }
 
-.form-error.visible {
-  display: block;
+.form-error.visible { display: block; }
+
+/* ── Responsive (landing) ── */
+@media (max-width: 480px) {
+  .form-row { flex-direction: column; }
+  .email-input { border-right: 1px solid rgba(200,168,75,0.2); border-bottom: none; }
+  .submit-btn { border-top: none; }
+  .share-buttons { gap: 0.5rem; }
+  .article-card { padding: 1.6rem 1.4rem; }
 }
 
-/* ── Responsive ── */
-@media (max-width: 480px) {
-  .form-row {
+
+/* ============================================================
+   Artículo — header minimal, contenido, footer editorial
+   ============================================================ */
+
+/* ── Header minimal ── */
+.art-header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1.5rem 0;
+  opacity: 0;
+  animation: fadeUp 0.9s ease forwards 0.1s;
+}
+
+.art-header__ornament {
+  margin-bottom: 1rem;
+}
+
+.art-header__ornament .ornament-line::before,
+.art-header__ornament .ornament-line::after {
+  width: 40px;
+}
+
+.art-header__identity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.art-header__logo {
+  width: 1.6cm;
+  height: auto;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.art-header__identity:hover .art-header__logo {
+  opacity: 1;
+}
+
+.art-header__site-name {
+  font-family: 'Cormorant SC', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.35em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.art-header__identity:hover .art-header__site-name {
+  color: var(--parchment-mid);
+}
+
+/* ── Página del artículo ── */
+.article-page {
+  position: relative;
+  z-index: 2;
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 6rem;
+}
+
+/* ── Cabecera del artículo ── */
+.article-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+  opacity: 0;
+  animation: fadeUp 1s ease forwards 0.3s;
+}
+
+.article-meta {
+  font-family: 'Cormorant SC', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+
+.article-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--parchment-light);
+  margin-bottom: 1.8rem;
+  letter-spacing: 0.01em;
+}
+
+.article-header__rule {
+  width: 50px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+  margin: 0 auto;
+}
+
+/* ── Cuerpo del artículo ── */
+.article-content {
+  opacity: 0;
+  animation: fadeUp 1s ease forwards 0.5s;
+}
+
+.article-content p {
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  line-height: 1.9;
+  color: var(--text-body);
+  margin-bottom: 1.6em;
+}
+
+.article-content p:first-child {
+  font-size: clamp(1.15rem, 2.2vw, 1.32rem);
+  color: var(--parchment-mid);
+}
+
+/* h2 = subtítulo grande centrado (ej. "Parte 1") */
+.article-content h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.2;
+  color: var(--parchment-light);
+  text-align: center;
+  margin: 3.5rem 0 2rem;
+}
+
+/* h3 = subtítulo de sección, mismo tamaño y centrado que h2 */
+.article-content h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.25;
+  color: var(--parchment-light);
+  text-align: center;
+  margin: 3rem 0 1.4rem;
+}
+
+.article-content cite {
+  font-style: normal;
+  color: var(--parchment-deep);
+}
+
+/* blockquote con margen inferior generoso para separar del párrafo siguiente */
+.article-content blockquote {
+  margin: 2.2rem 0 3rem;
+  padding: 1.5rem 1.8rem;
+  border-left: 1px solid rgba(200,168,75,0.3);
+  background: rgba(200,168,75,0.025);
+  position: relative;
+}
+
+.article-content blockquote::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 8px;
+  height: 8px;
+  border-top: 1px solid var(--parchment-mid);
+  border-left: 1px solid var(--parchment-mid);
+}
+
+.article-content blockquote,
+.article-content blockquote p {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.1rem, 2vw, 1.28rem);
+  font-style: italic;
+  line-height: 1.65;
+  color: var(--parchment-mid);
+  margin-bottom: 0;
+}
+
+/* cite dentro de blockquote: sin punto al final, en versalitas pequeñas */
+.article-content blockquote cite {
+  display: block;
+  margin-top: 0.7rem;
+  font-family: 'Cormorant SC', serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  color: var(--parchment-deep);
+  font-style: normal;
+}
+
+.article-content .blockquote-final {
+  border-left-color: rgba(200,168,75,0.5);
+  background: rgba(200,168,75,0.04);
+}
+
+.article-content a {
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(200,168,75,0.3);
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.article-content a:hover {
+  color: var(--gold-bright);
+  border-bottom-color: var(--gold-bright);
+}
+
+/* ── Footer editorial ── */
+.art-footer {
+  margin-top: 5rem;
+  text-align: center;
+  opacity: 0;
+  animation: fadeUp 1s ease forwards 0.7s;
+}
+
+.art-footer__ornament {
+  margin-bottom: 1.8rem;
+}
+
+.art-footer__ornament .ornament-line::before,
+.art-footer__ornament .ornament-line::after {
+  width: 40px;
+}
+
+.art-footer__nav {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.art-footer__link {
+  font-family: 'Cormorant SC', serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.art-footer__link:hover {
+  color: var(--parchment-mid);
+}
+
+/* ── Responsive artículo ── */
+@media (max-width: 600px) {
+  .article-content blockquote {
+    padding: 1.2rem 1.3rem;
+  }
+
+  .art-footer__nav {
     flex-direction: column;
+    gap: 1rem;
   }
+}
 
-  .email-input {
-    border-right: 1px solid rgba(200,168,75,0.2);
-    border-bottom: none;
-  }
+.highlight-inline {
+  display: inline;
+  padding: 0.15em 0.4em;
 
-  .submit-btn {
-    border-top: none;
-  }
+  border: 1px solid rgba(200,168,75,0.35);
+  background: rgba(200,168,75,0.05);
 
-  .share-buttons {
-    gap: 0.5rem;
-  }
-
-  .article-card {
-    padding: 1.6rem 1.4rem;
-  }
+  font-style: italic;
+  color: var(--parchment-mid);
 }
