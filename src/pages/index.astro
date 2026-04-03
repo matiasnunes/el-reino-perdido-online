@@ -1,21 +1,12 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<html lang="en">
-	<head>
-  		<meta charset="UTF-8" />
-  		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  		<title>El Reino Perdido</title>
-  		<meta name="description" content="Una recuperación teológica. Lo que los profetas prometieron, los apóstoles esperaron, y dieciséis siglos de teología cristiana perdieron." />
-  		<link rel="icon" type="image/png" href="1000-favicon.png" />
-  		<link rel="apple-touch-icon" href="1000-favicon.png" />
-  		<link rel="preconnect" href="https://fonts.googleapis.com" />
-  		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  		<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cormorant+SC:wght@300;400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" href="styles.css"/>
-  		<link rel="stylesheet" href="style.css" />
-	</head>
-	<body>
+<BaseLayout
+  title="El Reino Perdido"
+  description="Una recuperación teológica. Lo que los profetas prometieron, los apóstoles esperaron, y dieciséis siglos de teología cristiana perdieron."
+>
+  <!-- acá va el contenido del body de tu landing -->
   		<div class="bg-layer"></div>
 
   		<!-- Floating particles -->
@@ -28,7 +19,6 @@
   		    <div class="ornament-line">
   		      <div class="ornament-diamond"></div>
   		    </div>
-  		    <p class="label-coming">Próximamente</p>
   		  </div>
 
   		  <!-- Logo -->
@@ -39,6 +29,9 @@
   		  <!-- Title -->
   		  <header class="site-title">
   		    <h1>El <em>Reino</em> Perdido</h1>
+  		    <p>
+  		      Lo que los profetas prometieron, los apóstoles esperaron y<br><strong>dieciséis siglos de teología cristiana perdieron.</strong>
+  		    </p>
   		    <div class="title-rule"></div>
   		  </header>
 
@@ -52,7 +45,7 @@
 
   		  <!-- Scripture -->
   		  <blockquote class="scripture-block">
-  		    <p class="scripture-text">
+  		    <p>
   		      "Todos estos murieron sin haber recibido las promesas&#8230;"
   		    </p>
   		    <cite class="scripture-ref">Hebreos 11:13</cite>
@@ -73,9 +66,6 @@
 
   		  <!-- Tagline -->
   		  <div class="tagline">
-  		    <p>
-  		      Lo que los profetas prometieron, los apóstoles esperaron y<br><strong>dieciséis siglos de teología cristiana perdieron.</strong>
-  		    </p>
   		  </div>
 
   		  <!-- Email capture -->
@@ -178,7 +168,7 @@
 
   		</main>
 
-  		<script>
+  		<script is:inline>
   		  // ── Particles ──────────────────────────────────────────
   		  (function createParticles() {
   		    const container = document.getElementById('particles');
@@ -250,5 +240,4 @@
   		    this.style.borderColor = '';
   		  });
   		</script>
-	</body>
-</html>
+</BaseLayout>
