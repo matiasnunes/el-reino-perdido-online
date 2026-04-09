@@ -755,7 +755,7 @@ body::after {
 
 .article-content p {
   font-family: 'EB Garamond', Georgia, serif;
-  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
   line-height: 1.9;
   color: var(--text-body);
   margin-bottom: 1.6em;
