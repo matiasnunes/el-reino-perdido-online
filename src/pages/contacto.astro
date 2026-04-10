@@ -1,0 +1,131 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+---
+
+<ArticleLayout
+  title="Contacto"
+  description="¿Tenés una pregunta teológica, una objeción o simplemente querés escribir? Esta es la puerta."
+>
+
+  <p class="contact-intro">
+    Si algo de lo que leíste te generó preguntas, objeciones o simplemente
+    querés escribir, este es el lugar. Se lee todo.
+  </p>
+
+  <form
+    class="contact-form"
+    name="contacto"
+    method="POST"
+    data-netlify="true"
+    netlify-honeypot="bot-field"
+    id="contact-form"
+  >
+    <!-- Honeypot para bots -->
+    <input type="hidden" name="form-name" value="contacto" />
+    <p class="contact-form__honeypot">
+      <label>No completar: <input name="bot-field" /></label>
+    </p>
+
+    <!-- Nombre -->
+    <div class="contact-form__field">
+      <label class="contact-form__label" for="nombre">Nombre <span class="contact-form__optional">(opcional)</span></label>
+      <input
+        class="contact-form__input"
+        type="text"
+        id="nombre"
+        name="nombre"
+        placeholder="Tu nombre"
+        autocomplete="name"
+      />
+    </div>
+
+    <!-- Correo -->
+    <div class="contact-form__field">
+      <label class="contact-form__label" for="correo">Correo <span class="contact-form__required">*</span></label>
+      <input
+        class="contact-form__input"
+        type="email"
+        id="correo"
+        name="correo"
+        placeholder="tu@correo.com"
+        autocomplete="email"
+        required
+      />
+    </div>
+
+    <!-- Asunto -->
+    <div class="contact-form__field">
+      <label class="contact-form__label" for="asunto">Asunto <span class="contact-form__required">*</span></label>
+      <select
+        class="contact-form__input contact-form__select"
+        id="asunto"
+        name="asunto"
+        required
+      >
+        <option value="" disabled selected>Seleccioná una opción</option>
+        <option value="consulta-teologica">Consulta teológica</option>
+        <option value="objecion">Tengo una objeción</option>
+        <option value="colaboracion">Quiero colaborar</option>
+        <option value="otro">Otro</option>
+      </select>
+    </div>
+
+    <!-- Mensaje -->
+    <div class="contact-form__field">
+      <label class="contact-form__label" for="mensaje">Mensaje <span class="contact-form__required">*</span></label>
+      <textarea
+        class="contact-form__input contact-form__textarea"
+        id="mensaje"
+        name="mensaje"
+        placeholder="Escribí tu mensaje acá…"
+        rows="6"
+        required
+      ></textarea>
+    </div>
+
+    <div class="contact-form__footer">
+      <span class="contact-form__note">* Campo requerido</span>
+      <button class="contact-form__submit" type="submit">Enviar</button>
+    </div>
+
+  </form>
+
+  <!-- Estado de éxito (se muestra vía JS tras envío) -->
+  <div class="contact-success" id="contact-success" aria-hidden="true">
+    <div class="ornament-line" style="margin-bottom: 1.5rem;">
+      <div class="ornament-diamond"></div>
+    </div>
+    <p class="contact-success__title">Mensaje recibido.</p>
+    <p class="contact-success__sub">Se lee todo. Gracias por escribir.</p>
+  </div>
+
+  <script is:inline>
+    // Manejo del envío AJAX para evitar redirección de Netlify
+    const form = document.getElementById('contact-form');
+    const success = document.getElementById('contact-success');
+
+    if (form) {
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const data = new FormData(form);
+
+        try {
+          await fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(data).toString(),
+          });
+
+          form.style.display = 'none';
+          success.setAttribute('aria-hidden', 'false');
+          success.classList.add('contact-success--visible');
+        } catch (err) {
+          // Si falla el fetch, deja que el form haga submit normal
+          form.submit();
+        }
+      });
+    }
+  </script>
+
+</ArticleLayout>

@@ -1,4 +1,6 @@
 ---
+import Nav from '../components/Nav.astro';
+
 const {
   title,
   description = '',
@@ -26,7 +28,7 @@ const {
   <body>
     <div class="bg-layer"></div>
 
-    <!-- Header minimal del artículo -->
+    <!-- Header minimal -->
     <header class="art-header">
       <div class="art-header__ornament">
         <div class="ornament-line"><div class="ornament-diamond"></div></div>
@@ -35,6 +37,7 @@ const {
         <img src="/1000-logo.png" alt="El Reino Perdido" class="art-header__logo" />
         <span class="art-header__site-name">El Reino Perdido</span>
       </a>
+      <Nav />
     </header>
 
     <!-- Contenido -->

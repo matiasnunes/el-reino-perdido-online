@@ -1,0 +1,22 @@
+---
+// Nav.astro — navegación global compartida entre todos los layouts.
+// Para agregar una sección nueva: añadir un <a> al listado de abajo.
+const currentPath = Astro.url.pathname;
+
+function isActive(href: string) {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+}
+---
+
+<nav class="site-nav" aria-label="Navegación principal">
+  <a href="/" class:list={['site-nav__link', { 'site-nav__link--active': isActive('/') }]}>
+    Inicio
+  </a>
+  <!--<a href="/articulos" class:list={['site-nav__link', { 'site-nav__link--active': isActive('/articulos') }]}>
+    Artículos
+  </a>-->
+  <a href="/contacto" class:list={['site-nav__link', { 'site-nav__link--active': isActive('/contacto') }]}>
+    Contacto
+  </a>
+</nav>
