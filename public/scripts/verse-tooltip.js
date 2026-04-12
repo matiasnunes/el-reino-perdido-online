@@ -86,28 +86,44 @@
     hideTimer = setTimeout(hide, 150);
   });
 
-  // ── Eventos mobile: tap ──────────────────────────────────────────────────
-  document.addEventListener('click', function(e) {
-    if (!isTouch()) return;
-
-    const el = e.target.closest('[data-ref]');
-    if (el) {
-      e.preventDefault();
-      const ref  = el.dataset.ref;
-      const rect = el.getBoundingClientRect();
-      const x    = rect.left + rect.width / 2;
-      const y    = rect.top;
-
-      if (tooltip.classList.contains('vt-visible') && activeRef === ref) {
-        hide();
-      } else {
-        show(el, x, y);
-      }
-      return;
-    }
-
-    if (!tooltip.contains(e.target)) hide();
-  });
+	// ── Eventos mobile: tap de un solo toque ────────────────────────────────
+	document.addEventListener('touchend', function(e) {
+	  if (!isTouch()) return;
+	
+	  const el = e.target.closest('[data-ref]');
+	
+	  if (el) {
+	    e.preventDefault();
+	
+	    const ref = el.dataset.ref;
+	    const rect = el.getBoundingClientRect();
+	    const x = rect.left + rect.width / 2;
+	    const y = rect.top;
+	
+	    if (tooltip.classList.contains('vt-visible') && activeRef === ref) {
+	      hide();
+	    } else {
+	      show(el, x, y);
+	    }
+	
+	    return;
+	  }
+	
+	  if (!tooltip.contains(e.target)) hide();
+	}, { passive: false });
+	
+	// Respaldo para algunos casos donde el tap termine disparando click
+	document.addEventListener('click', function(e) {
+	  if (!isTouch()) return;
+	
+	  const el = e.target.closest('[data-ref]');
+	  if (el) {
+	    e.preventDefault();
+	    return;
+	  }
+	
+	  if (!tooltip.contains(e.target)) hide();
+	});
 
   // ── Teclado: foco y Escape ───────────────────────────────────────────────
   document.addEventListener('focusin', function(e) {
