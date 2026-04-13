@@ -138,32 +138,41 @@ const {
         current = null;
       }
 
-      document.addEventListener('mouseover', function(e) {
-        var el = e.target.closest('[data-ref]');
-        if (!el) return;
-        clearTimeout(timer);
-        show(el.dataset.ref, el);
-      });
+      // Detectar si el dispositivo es touch
+      var hasTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
-      document.addEventListener('mouseout', function(e) {
-        var el = e.target.closest('[data-ref]');
-        if (!el) return;
-        timer = setTimeout(hide, 120);
-      });
-
-      document.addEventListener('click', function(e) {
-        var el = e.target.closest('[data-ref]');
-        if (el) {
-          e.preventDefault();
-          if (tip.style.display === 'block' && current === el.dataset.ref) {
-            hide();
-          } else {
-            show(el.dataset.ref, el);
+      if (hasTouch) {
+        // MOBILE: touchstart para primer tap, segundo tap cierra
+        document.addEventListener('touchstart', function(e) {
+          var el = e.target.closest('[data-ref]');
+          if (el) {
+            e.preventDefault();
+            if (tip.style.display === 'block' && current === el.dataset.ref) {
+              hide();
+            } else {
+              show(el.dataset.ref, el);
+            }
+            return;
           }
-          return;
-        }
-        if (!tip.contains(e.target)) hide();
-      });
+          if (!tip.contains(e.target)) hide();
+        }, { passive: false });
+      } else {
+        // DESKTOP: hover
+        document.addEventListener('mouseover', function(e) {
+          var el = e.target.closest('[data-ref]');
+          if (!el) return;
+          clearTimeout(timer);
+          show(el.dataset.ref, el);
+        });
+        document.addEventListener('mouseout', function(e) {
+          var el = e.target.closest('[data-ref]');
+          if (!el) return;
+          timer = setTimeout(hide, 120);
+        });
+        document.addEventListener('click', function(e) {
+          if (!tip.contains(e.target)) hide();
+        });
+      }
 
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') hide();
