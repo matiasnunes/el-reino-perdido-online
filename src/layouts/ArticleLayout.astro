@@ -138,41 +138,40 @@ const {
         current = null;
       }
 
-      // Detectar si el dispositivo es touch
-      var hasTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+      // Rastrear el último tipo de interacción
+      var usingTouch = false;
+      document.addEventListener('touchstart', function() { usingTouch = true;  }, { passive: true });
+      document.addEventListener('mousemove',  function() { usingTouch = false; }, { passive: true });
 
-      if (hasTouch) {
-        // MOBILE: touchstart para primer tap, segundo tap cierra
-        document.addEventListener('touchstart', function(e) {
-          var el = e.target.closest('[data-ref]');
-          if (el) {
-            e.preventDefault();
-            if (tip.style.display === 'block' && current === el.dataset.ref) {
-              hide();
-            } else {
-              show(el.dataset.ref, el);
-            }
-            return;
+      // TOUCH: touchstart abre/cierra
+      document.addEventListener('touchstart', function(e) {
+        var el = e.target.closest('[data-ref]');
+        if (el) {
+          e.preventDefault();
+          if (tip.style.display === 'block' && current === el.dataset.ref) {
+            hide();
+          } else {
+            show(el.dataset.ref, el);
           }
-          if (!tip.contains(e.target)) hide();
-        }, { passive: false });
-      } else {
-        // DESKTOP: hover
-        document.addEventListener('mouseover', function(e) {
-          var el = e.target.closest('[data-ref]');
-          if (!el) return;
-          clearTimeout(timer);
-          show(el.dataset.ref, el);
-        });
-        document.addEventListener('mouseout', function(e) {
-          var el = e.target.closest('[data-ref]');
-          if (!el) return;
-          timer = setTimeout(hide, 120);
-        });
-        document.addEventListener('click', function(e) {
-          if (!tip.contains(e.target)) hide();
-        });
-      }
+          return;
+        }
+        if (!tip.contains(e.target)) hide();
+      }, { passive: false });
+
+      // MOUSE: hover — solo si el último evento fue de mouse
+      document.addEventListener('mouseover', function(e) {
+        if (usingTouch) return;
+        var el = e.target.closest('[data-ref]');
+        if (!el) return;
+        clearTimeout(timer);
+        show(el.dataset.ref, el);
+      });
+      document.addEventListener('mouseout', function(e) {
+        if (usingTouch) return;
+        var el = e.target.closest('[data-ref]');
+        if (!el) return;
+        timer = setTimeout(hide, 120);
+      });
 
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') hide();
