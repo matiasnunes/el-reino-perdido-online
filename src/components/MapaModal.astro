@@ -1,0 +1,199 @@
+---
+const { currentPath = '/' } = Astro.props;
+
+const series = [
+  {
+    id: 'abraham',
+    titulo: '¿Qué le prometió Dios a Abraham?',
+    descripcion: 'La promesa que Dios hizo a Abraham y lo que realmente esperaban los patriarcas.',
+    partes: [
+      { label: 'Parte 1', sub: 'El llamado, la aventura y la promesa', slug: 'que-le-prometio-dios-a-abraham-p1' },
+      { label: 'Parte 2', sub: 'Hebreos, Nehemías y la resurrección', slug: 'que-le-prometio-dios-a-abraham-p2' },
+      { label: 'Parte 3', sub: 'Isaac, el Dios de vivos y el día postrero', slug: 'que-le-prometio-dios-a-abraham-p3' },
+    ],
+  },
+  {
+    id: 'siglo',
+    titulo: 'Siglo Presente, Mundo Venidero',
+    descripcion: 'La distinción entre esta era y el reino que viene, y por qué importa.',
+    partes: [
+      { label: 'Parte 1', sub: 'Primera parte', slug: 'siglo-presente-mundo-venidero-p1' },
+      { label: 'Parte 2', sub: 'Segunda parte', slug: 'siglo-presente-mundo-venidero-p2' },
+    ],
+  },
+];
+---
+
+<script is:inline>
+(function() {
+  // Crear el modal completamente desde JS con estilos inline
+  // así no hay ninguna dependencia del CSS externo
+
+  var modal = document.createElement('div');
+  modal.id = 'mapa-modal';
+  modal.style.cssText = 'display:none;position:fixed;inset:0;z-index:9998;align-items:center;justify-content:center;padding:1.5rem;';
+
+  var backdrop = document.createElement('div');
+  backdrop.style.cssText = 'position:absolute;inset:0;background:rgba(10,9,8,0.88);opacity:0;transition:opacity 0.25s ease;';
+
+  var panel = document.createElement('div');
+  panel.style.cssText = 'position:relative;z-index:1;width:100%;max-width:700px;max-height:88vh;overflow-y:auto;background:#1a1814;border:1px solid rgba(200,168,75,0.2);box-shadow:0 20px 60px rgba(0,0,0,0.7);padding:2.5rem 2.8rem 3rem;opacity:0;transform:translateY(16px);transition:opacity 0.25s ease,transform 0.25s ease;font-family:EB Garamond,Georgia,serif;';
+
+  // Header
+  var header = document.createElement('div');
+  header.style.cssText = 'text-align:center;margin-bottom:2.2rem;position:relative;';
+
+  var ornLine = document.createElement('div');
+  ornLine.style.cssText = 'display:flex;align-items:center;justify-content:center;gap:1rem;margin-bottom:1rem;';
+  ornLine.innerHTML = '<div style="width:40px;height:1px;background:linear-gradient(90deg,transparent,#d9c9a3,transparent);"></div><div style="width:6px;height:6px;background:#d9c9a3;transform:rotate(45deg);"></div><div style="width:40px;height:1px;background:linear-gradient(90deg,transparent,#d9c9a3,transparent);"></div>';
+
+  var titulo = document.createElement('h2');
+  titulo.textContent = 'Mapa del Reino';
+  titulo.style.cssText = 'font-family:Cormorant Garamond,Georgia,serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:300;color:#ede0c4;margin-bottom:0.3rem;letter-spacing:0.04em;';
+
+  var sub = document.createElement('p');
+  sub.textContent = 'Elegí tu camino';
+  sub.style.cssText = 'font-family:Cormorant SC,serif;font-size:0.75rem;letter-spacing:0.3em;color:#7a6e5a;text-transform:uppercase;';
+
+  var closeBtn = document.createElement('button');
+  closeBtn.id = 'mapa-close';
+  closeBtn.setAttribute('aria-label', 'Cerrar mapa');
+  closeBtn.style.cssText = 'position:absolute;top:0;right:0;background:none;border:none;cursor:pointer;color:#7a6e5a;padding:0.25rem;line-height:0;transition:color 0.2s;';
+  closeBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+  closeBtn.onmouseenter = function() { closeBtn.style.color = '#d9c9a3'; };
+  closeBtn.onmouseleave = function() { closeBtn.style.color = '#7a6e5a'; };
+
+  header.appendChild(ornLine);
+  header.appendChild(titulo);
+  header.appendChild(sub);
+  header.appendChild(closeBtn);
+
+  // Series
+  var currentPath = document.location.pathname;
+
+  var seriesData = [
+    {
+      titulo: '¿Qué le prometió Dios a Abraham?',
+      desc: 'La promesa que Dios hizo a Abraham y lo que realmente esperaban los patriarcas.',
+      partes: [
+        { label: 'Parte 1', sub: 'El llamado, la aventura y la promesa', slug: 'que-le-prometio-dios-a-abraham-p1' },
+        { label: 'Parte 2', sub: 'Hebreos, Nehemías y la resurrección', slug: 'que-le-prometio-dios-a-abraham-p2' },
+        { label: 'Parte 3', sub: 'Isaac, el Dios de vivos y el día postrero', slug: 'que-le-prometio-dios-a-abraham-p3' },
+      ]
+    },
+    {
+      titulo: 'Siglo Presente, Mundo Venidero',
+      desc: 'La distinción entre esta era y el reino que viene, y por qué importa.',
+      partes: [
+        { label: 'Parte 1', sub: 'Las dos eras y el Reino Perdido', slug: 'siglo-presente-mundo-venidero-p1' },
+        { label: 'Parte 2', sub: 'El ladrón de la cruz y el reino restaurado', slug: 'siglo-presente-mundo-venidero-p2' },
+      ]
+    }
+  ];
+
+  var seriesContainer = document.createElement('div');
+  seriesContainer.style.cssText = 'display:flex;flex-direction:column;gap:2.2rem;';
+
+  seriesData.forEach(function(serie) {
+    var serieEl = document.createElement('div');
+
+    var serieHeader = document.createElement('div');
+    serieHeader.style.cssText = 'margin-bottom:1rem;';
+
+    var serieTitulo = document.createElement('h3');
+    serieTitulo.textContent = serie.titulo;
+    serieTitulo.style.cssText = 'font-family:Cormorant Garamond,Georgia,serif;font-size:clamp(1.05rem,2vw,1.35rem);font-weight:400;font-style:italic;color:#ede0c4;margin-bottom:0.3rem;';
+
+    var serieDesc = document.createElement('p');
+    serieDesc.textContent = serie.desc;
+    serieDesc.style.cssText = 'font-family:EB Garamond,Georgia,serif;font-size:0.95rem;color:#7a6e5a;font-style:italic;line-height:1.5;';
+
+    serieHeader.appendChild(serieTitulo);
+    serieHeader.appendChild(serieDesc);
+
+    var partesEl = document.createElement('div');
+    partesEl.style.cssText = 'display:flex;flex-direction:column;gap:0.5rem;padding-left:1rem;border-left:1px solid rgba(200,168,75,0.15);';
+
+    serie.partes.forEach(function(parte) {
+      var href = '/articulos/' + parte.slug;
+      var activa = currentPath === href || currentPath === href + '/';
+
+      var parteEl = document.createElement('div');
+      parteEl.style.cssText = 'display:flex;align-items:baseline;gap:0.7rem;padding:0.5rem 0.8rem;position:relative;' +
+        (activa ? 'background:rgba(200,168,75,0.06);border:1px solid rgba(200,168,75,0.2);' : '');
+
+      if (activa) {
+        var pin = document.createElement('span');
+        pin.style.cssText = 'position:absolute;left:-1.3rem;top:50%;transform:translateY(-50%);color:#c8a84b;line-height:0;';
+        pin.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>';
+        parteEl.appendChild(pin);
+      }
+
+      var labelEl = document.createElement('span');
+      labelEl.textContent = parte.label;
+      labelEl.style.cssText = 'font-family:Cormorant SC,serif;font-size:0.72rem;letter-spacing:0.2em;white-space:nowrap;flex-shrink:0;color:' + (activa ? '#c8a84b' : '#8a6f30') + ';';
+
+      var subEl = document.createElement('span');
+      subEl.textContent = parte.sub;
+      subEl.style.cssText = 'font-family:EB Garamond,Georgia,serif;font-size:1rem;font-style:italic;line-height:1.3;color:' + (activa ? '#d9c9a3' : '#d4c4a0') + ';';
+
+      parteEl.appendChild(labelEl);
+      parteEl.appendChild(subEl);
+      partesEl.appendChild(parteEl);
+    });
+
+    serieEl.appendChild(serieHeader);
+    serieEl.appendChild(partesEl);
+    seriesContainer.appendChild(serieEl);
+  });
+
+  panel.appendChild(header);
+  panel.appendChild(seriesContainer);
+  modal.appendChild(backdrop);
+  modal.appendChild(panel);
+  document.body.appendChild(modal);
+
+  // Lógica open/close
+  function openMapa() {
+    modal.style.display = 'flex';
+    requestAnimationFrame(function() {
+      backdrop.style.opacity = '1';
+      panel.style.opacity = '1';
+      panel.style.transform = 'translateY(0)';
+    });
+  }
+
+  function closeMapa() {
+    backdrop.style.opacity = '0';
+    panel.style.opacity = '0';
+    panel.style.transform = 'translateY(16px)';
+    setTimeout(function() { modal.style.display = 'none'; }, 260);
+  }
+
+  var isOpen = false;
+
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('#mapa-trigger')) {
+      isOpen ? closeMapa() : openMapa();
+      isOpen = !isOpen;
+      return;
+    }
+    if (e.target.closest('#mapa-close')) {
+      closeMapa();
+      isOpen = false;
+      return;
+    }
+    if (isOpen && e.target === backdrop) {
+      closeMapa();
+      isOpen = false;
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && isOpen) {
+      closeMapa();
+      isOpen = false;
+    }
+  });
+})();
+</script>
