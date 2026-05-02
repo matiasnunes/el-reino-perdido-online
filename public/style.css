@@ -1043,6 +1043,9 @@ body::after {
   text-transform: uppercase;
   transition: color 0.3s ease;
 }
+.next-part__sub.numero, .prev-part__sub.numero {
+	font-size: 1.1rem;
+}
 
 .next-part__link:hover .next-part__sub {
   color: var(--gold);
