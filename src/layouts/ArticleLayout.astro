@@ -1,5 +1,6 @@
 ---
 import Nav from '../components/Nav.astro';
+import MapaModal from '../components/MapaModal.astro';
 import verses from '../data/verses.json';
 
 const {
@@ -8,6 +9,7 @@ const {
   description = '',
   publishedAt = '',
 } = Astro.props;
+const currentPath = Astro.url.pathname;
 ---
 
 <!DOCTYPE html>
@@ -68,6 +70,8 @@ const {
         </nav>
       </footer>
     </main>
+
+    <MapaModal currentPath={currentPath} />
 
     <script is:inline>
     (function() {
@@ -147,8 +151,11 @@ const {
       document.addEventListener('touchstart', function() { usingTouch = true;  }, { passive: true });
       document.addEventListener('mousemove',  function() { usingTouch = false; }, { passive: true });
 
-      // TOUCH: touchstart abre/cierra
+      // TOUCH: touchstart abre/cierra tooltip
       document.addEventListener('touchstart', function(e) {
+        // No interferir con el botón del mapa ni con el modal
+        if (e.target.closest('#mapa-trigger') || e.target.closest('#mapa-modal')) return;
+
         var el = e.target.closest('[data-ref]');
         if (el) {
           e.preventDefault();

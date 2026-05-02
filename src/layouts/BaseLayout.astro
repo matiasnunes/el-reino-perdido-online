@@ -1,7 +1,9 @@
 ---
 import Nav from '../components/Nav.astro';
+import MapaModal from '../components/MapaModal.astro';
 
 const { title = 'El Reino Perdido', description = 'Los profetas lo prometieron. Los apóstoles lo esperaron. La teología lo olvidó.' } = Astro.props;
+const currentPath = Astro.url.pathname;
 ---
 
 <!DOCTYPE html>
@@ -29,6 +31,7 @@ const { title = 'El Reino Perdido', description = 'Los profetas lo prometieron. 
   </head>
   <body>
     <Nav />
+    <MapaModal currentPath={currentPath} />
     <slot />
   </body>
 </html>
