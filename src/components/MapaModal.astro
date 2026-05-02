@@ -1,33 +1,9 @@
 ---
 const { currentPath = '/' } = Astro.props;
-
-const series = [
-  {
-    id: 'abraham',
-    titulo: '¿Qué le prometió Dios a Abraham?',
-    descripcion: 'La promesa que Dios hizo a Abraham y lo que realmente esperaban los patriarcas.',
-    partes: [
-      { label: 'Parte 1', sub: 'El llamado, la aventura y la promesa', slug: 'que-le-prometio-dios-a-abraham-p1' },
-      { label: 'Parte 2', sub: 'Hebreos, Nehemías y la resurrección', slug: 'que-le-prometio-dios-a-abraham-p2' },
-      { label: 'Parte 3', sub: 'Isaac, el Dios de vivos y el día postrero', slug: 'que-le-prometio-dios-a-abraham-p3' },
-    ],
-  },
-  {
-    id: 'siglo',
-    titulo: 'Siglo Presente, Mundo Venidero',
-    descripcion: 'La distinción entre esta era y el reino que viene, y por qué importa.',
-    partes: [
-      { label: 'Parte 1', sub: 'Primera parte', slug: 'siglo-presente-mundo-venidero-p1' },
-      { label: 'Parte 2', sub: 'Segunda parte', slug: 'siglo-presente-mundo-venidero-p2' },
-    ],
-  },
-];
 ---
 
 <script is:inline>
 (function() {
-  // Crear el modal completamente desde JS con estilos inline
-  // así no hay ninguna dependencia del CSS externo
 
   var modal = document.createElement('div');
   modal.id = 'mapa-modal';
@@ -39,7 +15,6 @@ const series = [
   var panel = document.createElement('div');
   panel.style.cssText = 'position:relative;z-index:1;width:100%;max-width:700px;max-height:88vh;overflow-y:auto;background:#1a1814;border:1px solid rgba(200,168,75,0.2);box-shadow:0 20px 60px rgba(0,0,0,0.7);padding:2.5rem 2.8rem 3rem;opacity:0;transform:translateY(16px);transition:opacity 0.25s ease,transform 0.25s ease;font-family:EB Garamond,Georgia,serif;';
 
-  // Header
   var header = document.createElement('div');
   header.style.cssText = 'text-align:center;margin-bottom:2.2rem;position:relative;';
 
@@ -52,8 +27,8 @@ const series = [
   titulo.style.cssText = 'font-family:Cormorant Garamond,Georgia,serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:300;color:#ede0c4;margin-bottom:0.3rem;letter-spacing:0.04em;';
 
   var sub = document.createElement('p');
-  sub.textContent = 'Elegí tu camino';
-  sub.style.cssText = 'font-family:Cormorant SC,serif;font-size:0.75rem;letter-spacing:0.3em;color:#7a6e5a;text-transform:uppercase;';
+  sub.textContent = 'Elige tu camino';
+  sub.style.cssText = 'font-family:Cormorant SC,serif;font-size:0.95rem;letter-spacing:0.3em;color:#7a6e5a;text-transform:uppercase;';
 
   var closeBtn = document.createElement('button');
   closeBtn.id = 'mapa-close';
@@ -68,84 +43,144 @@ const series = [
   header.appendChild(sub);
   header.appendChild(closeBtn);
 
-  // Series
   var currentPath = document.location.pathname;
 
-  var seriesData = [
-    {
-      titulo: '¿Qué le prometió Dios a Abraham?',
-      desc: 'La promesa que Dios hizo a Abraham y lo que realmente esperaban los patriarcas.',
-      partes: [
-        { label: 'Parte 1', sub: 'El llamado, la aventura y la promesa', slug: 'que-le-prometio-dios-a-abraham-p1' },
-        { label: 'Parte 2', sub: 'Hebreos, Nehemías y la resurrección', slug: 'que-le-prometio-dios-a-abraham-p2' },
-        { label: 'Parte 3', sub: 'Isaac, el Dios de vivos y el día postrero', slug: 'que-le-prometio-dios-a-abraham-p3' },
-      ]
-    },
-    {
-      titulo: 'Siglo Presente, Mundo Venidero',
-      desc: 'La distinción entre esta era y el reino que viene, y por qué importa.',
-      partes: [
-        { label: 'Parte 1', sub: 'Las dos eras y el Reino Perdido', slug: 'siglo-presente-mundo-venidero-p1' },
-        { label: 'Parte 2', sub: 'El ladrón de la cruz y el reino restaurado', slug: 'siglo-presente-mundo-venidero-p2' },
-      ]
-    }
-  ];
+  var GOLD       = '#c8a84b';
+  var GOLD_DIM   = '#8a6f30';
+  var GOLD_FAINT = 'rgba(200,168,75,0.15)';
+  var PARCH      = '#ede0c4';
+  var PARCH_MID  = '#d9c9a3';
+  var MUTED      = '#7a6e5a';
+  var LINE       = 'rgba(200,168,75,0.2)';
 
-  var seriesContainer = document.createElement('div');
-  seriesContainer.style.cssText = 'display:flex;flex-direction:column;gap:2.2rem;';
-
-  seriesData.forEach(function(serie) {
-    var serieEl = document.createElement('div');
-
-    var serieHeader = document.createElement('div');
-    serieHeader.style.cssText = 'margin-bottom:1rem;';
-
-    var serieTitulo = document.createElement('h3');
-    serieTitulo.textContent = serie.titulo;
-    serieTitulo.style.cssText = 'font-family:Cormorant Garamond,Georgia,serif;font-size:clamp(1.05rem,2vw,1.35rem);font-weight:400;font-style:italic;color:#ede0c4;margin-bottom:0.3rem;';
-
-    var serieDesc = document.createElement('p');
-    serieDesc.textContent = serie.desc;
-    serieDesc.style.cssText = 'font-family:EB Garamond,Georgia,serif;font-size:0.95rem;color:#7a6e5a;font-style:italic;line-height:1.5;';
-
-    serieHeader.appendChild(serieTitulo);
-    serieHeader.appendChild(serieDesc);
-
-    var partesEl = document.createElement('div');
-    partesEl.style.cssText = 'display:flex;flex-direction:column;gap:0.5rem;padding-left:1rem;border-left:1px solid rgba(200,168,75,0.15);';
-
-    serie.partes.forEach(function(parte) {
-      var href = '/articulos/' + parte.slug;
-      var activa = currentPath === href || currentPath === href + '/';
-
-      var parteEl = document.createElement('div');
-      parteEl.style.cssText = 'display:flex;align-items:baseline;gap:0.7rem;padding:0.5rem 0.8rem;position:relative;' +
-        (activa ? 'background:rgba(200,168,75,0.06);border:1px solid rgba(200,168,75,0.2);' : '');
-
-      if (activa) {
-        var pin = document.createElement('span');
-        pin.style.cssText = 'position:absolute;left:-1.3rem;top:50%;transform:translateY(-50%);color:#c8a84b;line-height:0;';
-        pin.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>';
-        parteEl.appendChild(pin);
+  // ── Datos ────────────────────────────────────────────────
+  var grafo = {
+    series: [
+      {
+        titulo: 'Que le prometio Dios a Abraham?',
+        tituloDisplay: '\u00bfQu\u00e9 le prometi\u00f3 Dios a Abraham?',
+        partes: [
+          { label: 'Parte 1', sub: 'El llamado, la aventura y la promesa',      slug: 'que-le-prometio-dios-a-abraham-p1' },
+          { label: 'Parte 2', sub: 'Hebreos, Nehe\u006d\u00edas y la resurrecci\u00f3n',       slug: 'que-le-prometio-dios-a-abraham-p2' },
+          { label: 'Parte 3', sub: 'Isaac, el Dios de vivos y el d\u00eda postrero',  slug: 'que-le-prometio-dios-a-abraham-p3', bifurca: true },
+        ]
       }
+    ],
+    bifurcacion: [
+      {
+        tituloDisplay: 'Siglo Presente, Mundo Venidero',
+        partes: [
+          { label: 'Parte 1', sub: 'Las dos eras y el Reino Perdido',            slug: 'siglo-presente-mundo-venidero-p1' },
+          { label: 'Parte 2', sub: 'El ladr\u00f3n de la cruz y el reino restaurado', slug: 'siglo-presente-mundo-venidero-p2' },
+          { label: 'Parte 3', sub: 'El misterio del reino de mil a\u00f1os',          slug: 'siglo-presente-mundo-venidero-p3' },
+        ]
+      },
+      {
+        tituloDisplay: 'La Simiente de Abraham',
+        partes: [
+          { label: 'Parte 1', sub: 'El candidato que Dios eligi\u00f3 para heredar el mundo', slug: 'la-simiente-de-abraham-p1' },
+        ]
+      }
+    ]
+  };
 
-      var labelEl = document.createElement('span');
-      labelEl.textContent = parte.label;
-      labelEl.style.cssText = 'font-family:Cormorant SC,serif;font-size:0.72rem;letter-spacing:0.2em;white-space:nowrap;flex-shrink:0;color:' + (activa ? '#c8a84b' : '#8a6f30') + ';';
+  // ── Helpers ──────────────────────────────────────────────
+  function isActive(slug) {
+    var href = '/articulos/' + slug;
+    return currentPath === href || currentPath === href + '/';
+  }
 
-      var subEl = document.createElement('span');
-      subEl.textContent = parte.sub;
-      subEl.style.cssText = 'font-family:EB Garamond,Georgia,serif;font-size:1rem;font-style:italic;line-height:1.3;color:' + (activa ? '#d9c9a3' : '#d4c4a0') + ';';
+  function makeLink(slug) {
+    var a = document.createElement('a');
+    a.href = '/articulos/' + slug;
+    a.style.cssText = 'text-decoration:none;display:block;';
+    return a;
+  }
 
-      parteEl.appendChild(labelEl);
-      parteEl.appendChild(subEl);
-      partesEl.appendChild(parteEl);
-    });
+  function makeRow(parte) {
+    var activa = isActive(parte.slug);
+    var wrap = makeLink(parte.slug);
+    wrap.style.cssText += 'display:flex;align-items:baseline;gap:0.6rem;padding:0.3rem 0.5rem;border-radius:4px;transition:background 0.2s;';
+    if (activa) wrap.style.background = 'rgba(200,168,75,0.07)';
+    wrap.onmouseenter = function() { if (!activa) this.style.background = 'rgba(200,168,75,0.04)'; };
+    wrap.onmouseleave = function() { if (!activa) this.style.background = 'transparent'; };
 
-    serieEl.appendChild(serieHeader);
-    serieEl.appendChild(partesEl);
-    seriesContainer.appendChild(serieEl);
+    var label = document.createElement('span');
+    label.textContent = parte.label;
+    label.style.cssText = 'font-family:Cormorant SC,serif;font-size:0.68rem;letter-spacing:0.2em;flex-shrink:0;color:' + (activa ? GOLD : GOLD_DIM) + ';';
+
+    var sub = document.createElement('span');
+    sub.textContent = parte.sub;
+    sub.style.cssText = 'font-family:EB Garamond,Georgia,serif;font-size:0.95rem;font-style:italic;line-height:1.3;color:' + (activa ? PARCH : PARCH_MID) + ';';
+
+    if (activa) {
+      var pin = document.createElement('span');
+      pin.innerHTML = '\u25c6';
+      pin.style.cssText = 'font-size:0.5rem;color:' + GOLD + ';flex-shrink:0;align-self:center;';
+      wrap.appendChild(pin);
+    }
+    wrap.appendChild(label);
+    wrap.appendChild(sub);
+    return wrap;
+  }
+
+  function makeBranch(serieData) {
+    var branch = document.createElement('div');
+    branch.style.cssText = 'padding-left:1.2rem;border-left:1px solid ' + LINE + ';margin-top:0.5rem;';
+
+    var titulo = document.createElement('div');
+    titulo.textContent = serieData.tituloDisplay;
+    titulo.style.cssText = 'font-family:Cormorant Garamond,Georgia,serif;font-size:1rem;font-style:italic;color:' + PARCH + ';margin-bottom:0.4rem;padding:0.2rem 0;';
+    branch.appendChild(titulo);
+
+    var partes = document.createElement('div');
+    partes.style.cssText = 'padding-left:0.8rem;border-left:1px solid ' + LINE + ';display:flex;flex-direction:column;gap:0.1rem;';
+    serieData.partes.forEach(function(p) { partes.appendChild(makeRow(p)); });
+    branch.appendChild(partes);
+    return branch;
+  }
+
+  // ── Construir contenido ──────────────────────────────────
+  var seriesContainer = document.createElement('div');
+  seriesContainer.style.cssText = 'display:flex;flex-direction:column;gap:0;';
+
+  // Serie principal (QLPDA)
+  var serie = grafo.series[0];
+  var mainWrap = document.createElement('div');
+
+  var mainTitulo = document.createElement('div');
+  mainTitulo.textContent = serie.tituloDisplay;
+  mainTitulo.style.cssText = 'font-family:Cormorant Garamond,Georgia,serif;font-size:1.1rem;font-style:italic;font-weight:400;color:' + PARCH + ';margin-bottom:0.5rem;';
+  mainWrap.appendChild(mainTitulo);
+
+  var mainPartes = document.createElement('div');
+  mainPartes.style.cssText = 'padding-left:0.8rem;border-left:1px solid ' + LINE + ';display:flex;flex-direction:column;gap:0.1rem;';
+
+  serie.partes.forEach(function(parte, i) {
+    mainPartes.appendChild(makeRow(parte));
+
+    // Insertar bifurcaci\u00f3n despu\u00e9s de la \u00faltima parte
+    if (parte.bifurca) {
+      var bifWrap = document.createElement('div');
+      bifWrap.style.cssText = 'margin-top:0.8rem;padding-left:0.6rem;';
+
+      var bifLabel = document.createElement('div');
+      bifLabel.textContent = 'A partir de aqu\u00ed, dos caminos:';
+      bifLabel.style.cssText = 'font-family:Cormorant SC,serif;font-size:0.9rem;letter-spacing:0.22em;color:' + MUTED + ';text-transform:uppercase;margin-bottom:0.6rem;';
+      bifWrap.appendChild(bifLabel);
+
+      var bifBranches = document.createElement('div');
+      bifBranches.style.cssText = 'display:flex;flex-direction:column;gap:1rem;';
+      grafo.bifurcacion.forEach(function(b) {
+        bifBranches.appendChild(makeBranch(b));
+      });
+      bifWrap.appendChild(bifBranches);
+      mainPartes.appendChild(bifWrap);
+    }
   });
+
+  mainWrap.appendChild(mainPartes);
+  seriesContainer.appendChild(mainWrap);
 
   panel.appendChild(header);
   panel.appendChild(seriesContainer);
@@ -153,7 +188,6 @@ const series = [
   modal.appendChild(panel);
   document.body.appendChild(modal);
 
-  // Lógica open/close
   function openMapa() {
     modal.style.display = 'flex';
     requestAnimationFrame(function() {
@@ -195,5 +229,6 @@ const series = [
       isOpen = false;
     }
   });
+
 })();
 </script>

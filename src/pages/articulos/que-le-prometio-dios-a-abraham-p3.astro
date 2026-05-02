@@ -104,19 +104,48 @@ import ArticleLayout from '../../layouts/ArticleLayout.astro';
 
   <p>En Israel, la tierra prometida eternamente <cite data-ref="Sal 105:8-11" tabindex="0">(Sal 105:8-11)</cite> a él y a su descendencia, es donde Abraham recibirá, finalmente, todo aquello que el Dios fiel le prometió al final de los tiempos.</p>
 
-  <!-- Bloque de continuación -->
-  <div class="next-part">
-    <div class="next-part__rule"></div>
-    <p class="next-part__label">Continúa en</p>
-    <a href="/articulos/siglo-presente-mundo-venidero-p1" class="next-part__link">
-      <span class="next-part__title">Siglo presente, mundo venidero</span>
-      <span class="next-part__sub">Parte 1 — Las dos eras bíblicas y el Reino Perdido</span>
-      <span class="next-part__arrow">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
-      </span>
-    </a>
+  <!-- Bifurcación: dos caminos desde QLPDA P3 -->
+  <div style="margin-top:5rem;margin-bottom:2rem;">
+
+    <p style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.6rem,3.5vw,2.3rem);font-style:italic;font-weight:300;color:#ede0c4;line-height:1.35;text-align:center;margin:0 0 3rem;">
+      Ahora puedes elegir tu recorrido.<br>¿Por dónde sigues?
+    </p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;border:1px solid rgba(200,168,75,0.35);">
+
+      <a href="/articulos/siglo-presente-mundo-venidero-p1"
+        style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:1.2rem;padding:2.5rem 1.5rem 2.8rem;text-decoration:none;border-right:1px solid rgba(200,168,75,0.35);transition:background 0.3s ease;"
+        onmouseover="this.style.background='rgba(200,168,75,0.05)'"
+        onmouseout="this.style.background='transparent'">
+        <span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.8rem;font-style:italic;color:#c9b48a;">
+          Opción A
+        </span>
+        <img src="/puerta-1.svg" alt="" aria-hidden="true"
+          style="width:auto;height:clamp(136px,18.7vw,187px);opacity:0.9;transition:transform 0.3s ease;"
+          onmouseover="this.style.transform='translateY(-4px)'"
+          onmouseout="this.style.transform='translateY(0)'" />
+        <span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.1rem,2.2vw,1.45rem);font-style:italic;color:#ede0c4;text-align:center;line-height:1.25;padding-bottom:0.5rem;border-bottom:1px solid rgba(200,168,75,0.3);">
+          Siglo Presente,<br>Mundo Venidero
+        </span>
+      </a>
+
+      <a href="/articulos/la-simiente-de-abraham-p1"
+        style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:1.2rem;padding:2.5rem 1.5rem 2.8rem;text-decoration:none;transition:background 0.3s ease;"
+        onmouseover="this.style.background='rgba(200,168,75,0.05)'"
+        onmouseout="this.style.background='transparent'">
+        <span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.8rem;font-style:italic;color:#c9b48a;">
+          Opción B
+        </span>
+        <img src="/puerta-2.svg" alt="" aria-hidden="true"
+          style="width:auto;height:clamp(136px,18.7vw,187px);opacity:0.9;transition:transform 0.3s ease;"
+          onmouseover="this.style.transform='translateY(-4px)'"
+          onmouseout="this.style.transform='translateY(0)'" />
+        <span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.1rem,2.2vw,1.45rem);font-style:italic;color:#ede0c4;text-align:center;line-height:1.25;padding-bottom:0.5rem;border-bottom:1px solid rgba(200,168,75,0.3);">
+          La Simiente<br>de Abraham
+        </span>
+      </a>
+
+    </div>
   </div>
 
   <!-- Bloque de navegación hacia la parte anterior -->
