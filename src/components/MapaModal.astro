@@ -28,15 +28,15 @@ const { currentPath = '/' } = Astro.props;
 
   var sub = document.createElement('p');
   sub.textContent = 'Elige tu camino';
-  sub.style.cssText = 'font-family:Cormorant SC,serif;font-size:0.95rem;letter-spacing:0.3em;color:#7a6e5a;text-transform:uppercase;';
+  sub.style.cssText = 'font-family:Cormorant SC,serif;font-size:0.95rem;letter-spacing:0.3em;color:#c9b48a;text-transform:uppercase;';
 
   var closeBtn = document.createElement('button');
   closeBtn.id = 'mapa-close';
   closeBtn.setAttribute('aria-label', 'Cerrar mapa');
-  closeBtn.style.cssText = 'position:absolute;top:0;right:0;background:none;border:none;cursor:pointer;color:#7a6e5a;padding:0.25rem;line-height:0;transition:color 0.2s;';
+  closeBtn.style.cssText = 'position:absolute;top:0;right:0;background:none;border:none;cursor:pointer;color:#c9b48a;padding:0.25rem;line-height:0;transition:color 0.2s;';
   closeBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
-  closeBtn.onmouseenter = function() { closeBtn.style.color = '#d9c9a3'; };
-  closeBtn.onmouseleave = function() { closeBtn.style.color = '#7a6e5a'; };
+  closeBtn.onmouseenter = function() { closeBtn.style.color = '#ede0c4'; };
+  closeBtn.onmouseleave = function() { closeBtn.style.color = '#c9b48a'; };
 
   header.appendChild(ornLine);
   header.appendChild(titulo);
@@ -46,11 +46,11 @@ const { currentPath = '/' } = Astro.props;
   var currentPath = document.location.pathname;
 
   var GOLD       = '#c8a84b';
-  var GOLD_DIM   = '#8a6f30';
+  var GOLD_DIM   = '#c9b48a';
   var GOLD_FAINT = 'rgba(200,168,75,0.15)';
   var PARCH      = '#ede0c4';
   var PARCH_MID  = '#d9c9a3';
-  var MUTED      = '#7a6e5a';
+  var MUTED      = '#c9b48a';
   var LINE       = 'rgba(200,168,75,0.2)';
 
   // ── Datos ────────────────────────────────────────────────
@@ -80,6 +80,7 @@ const { currentPath = '/' } = Astro.props;
         partes: [
           { label: 'Parte 1', sub: 'El candidato que Dios eligi\u00f3 para heredar el mundo', slug: 'la-simiente-de-abraham-p1' },
           { label: 'Parte 2', sub: '\u00bfDe qui\u00e9n es hijo el Cristo?', slug: 'la-simiente-de-abraham-p2' },
+          { label: 'Parte 3', sub: 'La semilla escogida desde el principio', slug: 'la-simiente-de-abraham-p3' },
         ]
       }
     ]

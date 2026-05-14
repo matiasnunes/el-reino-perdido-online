@@ -164,7 +164,7 @@ body::after {
   font-family: 'EB Garamond', Georgia, serif;
   font-size: clamp(0.95rem, 1.8vw, 1.1rem);
   font-style: italic;
-  color: var(--text-muted);
+  color: var(--parchment-deep);
   line-height: 1.8;
 }
 
@@ -382,7 +382,7 @@ body::after {
   font-family: 'EB Garamond', Georgia, serif;
   font-size: clamp(0.95rem, 1.8vw, 1.1rem);
   font-style: italic;
-  color: var(--text-muted);
+  color: var(--parchment-deep);
   line-height: 1.8;
 }
 
@@ -695,7 +695,7 @@ body::after {
   font-family: 'Cormorant SC', serif;
   font-size: 0.75rem;
   letter-spacing: 0.35em;
-  color: var(--text-muted);
+  color: var(--parchment-deep);
   text-transform: uppercase;
   transition: color 0.3s ease;
 }
@@ -725,7 +725,7 @@ body::after {
   font-family: 'Cormorant SC', serif;
   font-size: 0.75rem;
   letter-spacing: 0.3em;
-  color: var(--text-muted);
+  color: var(--parchment-deep);
   text-transform: uppercase;
   margin-bottom: 1.2rem;
 }
@@ -942,13 +942,13 @@ body::after {
   font-family: 'Cormorant SC', serif;
   font-size: 0.72rem;
   letter-spacing: 0.22em;
-  color: var(--text-muted);
+  color: var(--parchment-deep);
   text-transform: uppercase;
   transition: color 0.3s ease;
 }
 
 .prev-part__link:hover .prev-part__sub {
-  color: var(--parchment-deep);
+  color: var(--gold);
 }
 
 /* ── Bloque de continuación (siguiente parte) ── */
@@ -968,7 +968,7 @@ body::after {
   font-family: 'Cormorant SC', serif;
   font-size: 0.75rem;
   letter-spacing: 0.35em;
-  color: var(--text-muted);
+  color: var(--parchment-deep);
   text-transform: uppercase;
   margin-bottom: 1.2rem;
 }
@@ -1097,13 +1097,13 @@ body::after {
   font-family: 'Cormorant SC', serif;
   font-size: 0.8rem;
   letter-spacing: 0.25em;
-  color: var(--text-muted);
+  color: var(--parchment-deep);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .art-footer__link:hover {
-  color: var(--parchment-mid);
+  color: var(--parchment-light);
 }
 
 /* ── Highlight inline ── */
@@ -1173,7 +1173,7 @@ body::after {
   font-family: 'EB Garamond', Georgia, serif;
   font-size: 0.78rem;
   letter-spacing: 0.05em;
-  color: var(--text-muted);
+  color: var(--parchment-deep);
   text-transform: none;
 }
 
@@ -1233,7 +1233,7 @@ body::after {
   font-family: 'EB Garamond', Georgia, serif;
   font-size: 0.85rem;
   font-style: italic;
-  color: var(--text-muted);
+  color: var(--parchment-deep);
 }
 
 .contact-form__submit {
@@ -1278,7 +1278,7 @@ body::after {
   font-family: 'EB Garamond', Georgia, serif;
   font-size: 1rem;
   font-style: italic;
-  color: var(--text-muted);
+  color: var(--parchment-deep);
 }
 
 @media (max-width: 480px) {
