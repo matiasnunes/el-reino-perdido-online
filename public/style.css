@@ -1378,9 +1378,10 @@ button.site-nav__map-btn {
   color: var(--gold);
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 0;
   line-height: 0;
   pointer-events: auto;
+  position: relative;
   transition: color 0.3s ease;
 }
 
@@ -1388,9 +1389,36 @@ button.site-nav__map-btn svg {
   display: block;
   width: 1.1rem;
   height: 1.1rem;
+  flex-shrink: 0;
 }
 
-button.site-nav__map-btn:hover {
+.site-nav__map-label {
+  font-family: 'Cormorant SC', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  line-height: 1.4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  transition: opacity 0.25s ease, transform 0.25s ease, color 0.25s ease;
+}
+
+button.site-nav__map-btn:hover .site-nav__map-label,
+button.site-nav__map-btn:focus .site-nav__map-label {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+button.site-nav__map-btn:hover .site-nav__map-label {
   color: var(--parchment-mid);
 }
 
