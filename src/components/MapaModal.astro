@@ -72,8 +72,14 @@ const { currentPath = '/' } = Astro.props;
         partes: [
           { label: 'Parte 1', sub: 'Las dos eras y el Reino Perdido',            slug: 'siglo-presente-mundo-venidero-p1' },
           { label: 'Parte 2', sub: 'La resurrecci\u00f3n y el reino de los justos', slug: 'siglo-presente-mundo-venidero-p2' },
-          { label: 'Parte 3', sub: 'El reino de mil a\u00f1os y el reposo definitivo',          slug: 'siglo-presente-mundo-venidero-p3' },
-        ]
+          { label: 'Parte 3', sub: 'El reino de mil a\u00f1os y el reposo definitivo', slug: 'siglo-presente-mundo-venidero-p3' },
+        ],
+        continuacion: {
+          tituloDisplay: 'El Mundo Bajo Cristo',
+          partes: [
+            { label: 'Parte 1', sub: 'La justicia que el Reino promete', slug: 'el-mundo-bajo-cristo-p1' },
+          ]
+        }
       },
       {
         tituloDisplay: 'La Simiente de Abraham',
@@ -81,10 +87,12 @@ const { currentPath = '/' } = Astro.props;
           { label: 'Parte 1', sub: 'El candidato que Dios eligi\u00f3 para heredar el mundo', slug: 'la-simiente-de-abraham-p1' },
           { label: 'Parte 2', sub: '\u00bfDe qui\u00e9n es hijo el Cristo?', slug: 'la-simiente-de-abraham-p2' },
           { label: 'Parte 3', sub: 'La semilla escogida desde el principio', slug: 'la-simiente-de-abraham-p3' },
-        ]
+        ],
+        continuacion: null
       }
     ]
   };
+
 
   // ── Helpers ──────────────────────────────────────────────
   function isActive(slug) {
@@ -126,6 +134,13 @@ const { currentPath = '/' } = Astro.props;
     return wrap;
   }
 
+  function makePartesList(partes) {
+    var el = document.createElement('div');
+    el.style.cssText = 'padding-left:0.8rem;border-left:1px solid ' + LINE + ';display:flex;flex-direction:column;gap:0.1rem;';
+    partes.forEach(function(p) { el.appendChild(makeRow(p)); });
+    return el;
+  }
+
   function makeBranch(serieData) {
     var branch = document.createElement('div');
     branch.style.cssText = 'padding-left:1.2rem;border-left:1px solid ' + LINE + ';margin-top:0.5rem;';
@@ -134,11 +149,32 @@ const { currentPath = '/' } = Astro.props;
     titulo.textContent = serieData.tituloDisplay;
     titulo.style.cssText = 'font-family:Cormorant Garamond,Georgia,serif;font-size:1rem;font-style:italic;color:' + PARCH + ';margin-bottom:0.4rem;padding:0.2rem 0;';
     branch.appendChild(titulo);
+    branch.appendChild(makePartesList(serieData.partes));
 
-    var partes = document.createElement('div');
-    partes.style.cssText = 'padding-left:0.8rem;border-left:1px solid ' + LINE + ';display:flex;flex-direction:column;gap:0.1rem;';
-    serieData.partes.forEach(function(p) { partes.appendChild(makeRow(p)); });
-    branch.appendChild(partes);
+    if (serieData.continuacion) {
+      var cont = serieData.continuacion;
+
+      var conector = document.createElement('div');
+      conector.style.cssText = 'display:flex;align-items:center;gap:0.5rem;margin:0.55rem 0 0.35rem;padding-left:0.8rem;';
+      var lineaIzq = document.createElement('div');
+      lineaIzq.style.cssText = 'flex:1;border-top:1px dashed rgba(200,168,75,0.35);';
+      var label = document.createElement('span');
+      label.textContent = 'continúa';
+      label.style.cssText = 'font-family:Cormorant SC,serif;font-size:0.62rem;letter-spacing:0.18em;color:' + MUTED + ';text-transform:uppercase;flex-shrink:0;';
+      var lineaDer = document.createElement('div');
+      lineaDer.style.cssText = 'flex:1;border-top:1px dashed rgba(200,168,75,0.35);';
+      conector.appendChild(lineaIzq);
+      conector.appendChild(label);
+      conector.appendChild(lineaDer);
+      branch.appendChild(conector);
+
+      var contTitulo = document.createElement('div');
+      contTitulo.textContent = cont.tituloDisplay;
+      contTitulo.style.cssText = 'font-family:Cormorant Garamond,Georgia,serif;font-size:0.95rem;font-style:italic;color:' + PARCH_MID + ';margin-bottom:0.3rem;padding:0.1rem 0 0.1rem 0.8rem;';
+      branch.appendChild(contTitulo);
+      branch.appendChild(makePartesList(cont.partes));
+    }
+
     return branch;
   }
 
